@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Abdurakhmon Rashidov">
+    <meta name="organization" content="Robocode IT Academy Andijan">
+    <meta name="keywords" content="hackathon, Dasturlash, dastur">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/detail.css">
+    <link rel="stylesheet" href="/static/css/normalize.css">
+    <link rel="short icon" href="/static/src/fav.png">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+    <title>Hackathon - Andijan </title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="/" class="logo">
+                RoboHack
+            </a>
+            <ul id="menu">
+                <li>
+                    <a href="#">Bosh sahifa</a>
+                </li>
+                <li>
+                    <a href="{% url 'main:home' %}#chellanges">Musobaqalar</a>
+                </li>
+                <li>
+                    <a href="{% url 'main:home' %}#events">Tadbirlar</a>
+                </li>
+                <li>
+                    <a href="{% url 'main:home' %}#contact">Bog'lanish</a>
+                </li>
+            </ul>
+            <div class="mobile-menu">
+                <a href="#" id="open" onclick="openMenu()">
+                    <i class="fas fa-ellipsis-h"></i>
+                </a>
+            </div>
+        </nav>
+    </header>
+    <section id="detail">
+        <div class="container">
+            <div class="events">
+                <div class="event">
+                    <img src="{{ object.banner_image.url }}" class="banner-img" alt="">
+                    <div class="content">
+                        <h1>{{ object.title }}</h1>
+                        <br>
+                        <p>Manzil : <b>{{ object.address }}</b></p>
+                        <p>Sana : <b>{{ object.date }}</b></p>
+                        <p>Vaqti : <b>{{ object.time }}</b></p>
+                        <br>
+                        <h4>
+                            {{ object.description|safe }}
+                        </h4>
+                        <br><br>
+                        <div class="center">
+                            <a href="#" onclick="openCloseModal()" class="btn f-btn">
+                                Ro'yhatdan o'tish
+                            </a>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="content center">
+                <h1>Tadbir kimlar uchun ?</h1>
+            </div>
+            <br>
+            <div class="who-for">
+                {% for who_event in who_events %}
+                <div class="for">
+                    <div class="icon center">
+                        <img src="{{ who_event.img.url }}" alt="">
+                    </div>
+                    <div class="content">
+                        <h3 class="center">{{ who_event.title }}</h3>
+                        <p class="blur-text">{{ who_event.description }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <section id="about-event">
+        <div class="content center">
+            <h1>Ushbu {{ object.title }} haqida qisqacha</h1>
+        </div>
+        <br>
+        <div class="container">
+            <div class="about-event">
+                <div class="content-text">
+                    <h2>{{ object.title }} haqida</h2>
+                    <br>
+                    <p>
+                        {{ object.description|safe }}
+                    </p>
+                    <br>
+                    <h2>Qanday foydasi bor ?</h2>
+                    <br>
+                    <ul class="why">
+                        {% for icon in icons %}
+                            <li class="why-icon"><i class="{{ icon.icon }}"></i> {{ icon.title }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <br>
+                <div class="content-image">
+                    <img src="{{ object.banner_image.url }}" alt="">
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="content center">
+                <h1>Tadbir'dan nima olasiz ?</h1>
+            </div>
+            <br>
+            <div class="who-for">
+                {% for what_take in what_takes %}
+                <div class="for">
+                    <div class="icon center">
+                        <img src="{{ what_take.img.url }}" alt="">
+                    </div>
+                    <div class="content">
+                        <h3 class="center">{{ what_take.title }}</h3>
+                        <p class="blur-text">
+                            {{ what_take.description }}
+                        </p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <section id="timeline">
+        <div class="container">
+            <div class="content center">
+                <h1>Timeline</h1>
+            </div>
+            <div class="timeline">
+                <div class="times">
+                    <div class="left-content">
+                        {% for time_left in time_lefts %}
+                        <div class="time text-right">
+                            <i class="fas fa-clock"></i>
+                            <span>{{ time_left.time }}</span>
+                            <p class="blur-text">{{ time_left.why_text }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="column"></div>
+                    <div class="right-content">
+                        {% for time_right in time_rights %}
+                        <div class="time text-left">
+                            <i class="fas fa-clock"></i>
+                            <span>{{ time_right.time }}</span>
+                            <p class="blur-text">{{ time_right.why_text  }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="center">
+                <a href="#" onclick="openCloseModal()" class="btn f-btn">
+                    Ro'yhatdan o'tish
+                </a>
+            </div>
+        </div>
+    </section>
+    <div class="modal">
+        <div class="modal-content">
+            <center>
+                <a href="#" onclick="openCloseModal()">
+                    <h1>
+                        <i class="fas fa-times"></i>
+                    </h1>
+                </a>
+                <h2>Tadbir ga yozilish </h2>
+                <p class="blur-text ">
+                    Quyidagi formani to'ldiring
+                </p>
+            </center>
+            <div class="contact-form">
+                <p>
+                    <input type="text" class="form" placeholder="Ism Familya" id="id_name_event_register">
+                </p>
+                <p>
+                    <input type="number" class="form" placeholder="Yosh" id="id_age_event_register">
+                </p>
+                <p>
+                    <input type="text" class="form" placeholder="Tajribangiz necha oy/yil ?" id="id_experience_event">
+                </p>
+                <p>
+                    <input type="tel" name="telphone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" maxlength="12" class="form" placeholder="888888888" required id="id_phone_event_register">
+                </p>
+                <p>
+                    <textarea cols="22" rows="4" placeholder="O'zingiz haqingizda qisqacha..." id="id_message_event_register"></textarea>
+                </p>
+                <p>
+                    <button class="btn" onclick="EventRegister({{ object.id }})">
+                        Yozilish
+                    </button>
+                </p>
+            </div>
+        </div>
+    </div>
+    <section id="contact">
+        <div class="container " style="display:flex;justify-content:center; ">
+            <div class="contact-area ">
+                <center>
+                    <h2>Tadbir haqida savollar qoldimi ? </h2>
+                    <p class="blur-text ">
+                        Quyidagi formani to'ldiring va bizga sizni qiziqtirgan savollaringizni qoldiring.
+                    </p>
+                </center>
+                <div class="contact-form">
+                    <p>
+                        <input type="text" class="form" placeholder="Ism Familya" id="id_name_event">
+                    </p>
+                    <p>
+                        <input type="text" class="form" placeholder="Yosh" id="id_age_event">
+                    </p>
+                    <p>
+                        <input type="tel" name="telphone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" maxlength="12" class="form" placeholder="888888888" required id="id_phone_event">
+                    </p>
+                    <p>
+                        <textarea cols="22" rows="4" placeholder="Qo'shimcha fikringiz..." id="id_message_event"></textarea>
+                    </p>
+                    <p>
+                        <button type="submit" class="btn" onclick="EventQuestion({{ object.id }})">
+                            Yuborish
+                        </button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="footer ">
+        <footer class="container ">
+            <div class="footer-content ">
+                <div class="content ">
+                    <div class="block brand ">
+                        <a href="# " class="logo ">
+                            RoboHack
+                        </a>
+                        <br>
+                        <small> Robocode IT Academy tomonidan 2022-yil yo'lga qo'yilgan.</small>
+                        <br>
+                        <p class="blur-text ">
+                            Barcha taklif va savollaringizni bizga yozib yuborishingiz mumkin.
+                        </p>
+                    </div>
+                    <div class="block contacts ">
+                        <h3>Bog'lanish</h3>
+                        <ul class="why ">
+                            <li class="why-icon">
+                                <a href="#" class="blur-text "><i class="fas fa-phone "></i> +998931234567</a>
+                            </li>
+                            <li class="why-icon">
+                                <a href="#" class="blur-text "><i class="fas fa-map-marker-alt "></i> Andijon sh. Uzbekistan</a>
+                            </li>
+                            <li class="why-icon">
+                                <a href="#" class="blur-text "><i class="fas fa-envelope "></i> support@hackathon.uz</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="block more ">
+                        <h3>Qo'shimcha</h3>
+                        <ul class="why ">
+                            <li class="why-icon ">
+                                <a href="{% url 'main:home' %}#about-hackathons" class="blur-text "><i class="fas fa-info "></i> Biz haqimizda</a>
+                            </li>
+                            <li class="why-icon ">
+                                <a href="{% url 'main:home' %}#contact" class="blur-text "><i class="fas fa-phone "></i> Aloqa</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="block pages ">
+                        <h3>Bo'limlar</h3>
+                        <ul class="why ">
+                            <li class="why-icon ">
+                                <a href="{% url 'main:home' %}#chellanges" class="blur-text ">Musobaqalar</a>
+                            </li>
+                            <li class="why-icon ">
+                                <a href="{% url 'main:home' %}#events" class="blur-text ">Tadbirlar</a>
+                            </li>
+                            <li class="why-icon ">
+                                <a href="{% url 'main:home' %}#contact" class="blur-text ">Bog'lanish</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </section>
+
+
+    <section id="success" class="info-modal">
+        <h1>Muvaffaqiyatli yuborildi !</h1>
+        <h3>Tez Orada Aloqaga Chiqamiz !</h3>
+        <div class="close-info-modal">
+            <i class="fas fa-times" onclick="this.parentElement.parentElement.classList.remove('info-modal-active')"></i>
+        </div>
+    </section>
+
+    <section id="error" class="info-modal">
+        <h1>Biror Narsa Notogri Ketdi</h1>
+        <h3>Iltimos Togri Formatda Yozing</h3>
+        <div class="close-info-modal">
+            <i class="fas fa-times" onclick="this.parentElement.parentElement.classList.remove('info-modal-active')"></i>
+        </div>
+    </section>
+
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js "></script>
+    <!-- <script src="/static/js/slider.js"></script> -->
+    <script src="/static/js/forms.js "></script>
+    <script src="/static/js/main.js "></script>
+</body>
+
+</html>

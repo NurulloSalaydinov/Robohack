@@ -1,0 +1,360 @@
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Abdurakhmon Rashidov">
+    <meta name="organization" content="Robocode IT Academy Andijan">
+    <meta name="keywords" content="hackathon, Dasturlash, dastur">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/normalize.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/splide.min.css" />
+    <link rel="short icon" href="/static/src/fav.png">
+    <title>Hackathon - Andijan </title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="/static/home.html" class="logo">
+                RoboHack
+            </a>
+            <ul id="menu">
+                <li>
+                    <a href="#">Bosh sahifa</a>
+                </li>
+                <li>
+                    <a href="#chellanges">Musobaqalar</a>
+                </li>
+                <li>
+                    <a href="#events">Tadbirlar</a>
+                </li>
+                <li>
+                    <a href="#contact">Bog'lanish</a>
+                </li>
+            </ul>
+            <div class="mobile-menu">
+                <a href="#" id="open" onclick="openMenu()">
+                    <i class="fas fa-ellipsis-h"></i>
+                </a>
+            </div>
+        </nav>
+    </header>
+    <section id="home-section">
+        <div class="container">
+            <div class="home-area">
+                <div class="info">
+                    <h1>Xududiy hackathon <br> Designer & Developer lar uchun</h1>
+                    <p><a href="https://robocode.uz">robocode.uz</a> tomonidan o'tkazilayotgan dasturchi va grafik/veb dizaynerlar <br> hakatonida ishtirok eting.</p>
+                    <br><br>
+                    <a href="#contact" class="btn f-btn">
+                        Bog'lanish
+                    </a>
+                </div>
+                <br><br>
+                <div class="banner-image">
+                    <img src="/static/src/hack.png" style="max-width: 80%;" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Hackathon types -->
+    <section id="chellanges">
+        <div class="container">
+            <center>
+                <div class="area-title">
+                    Biznig musobaqalar
+                </div>
+                <br>
+                <br>
+            </center>
+            <!-- Hackathons -->
+            
+            <div class="types-area">
+                {% for contest in contests %}
+                <div class="type">
+                    <div class="icon">
+                        <img src="{{ contest.card_image.url }}" width="100" alt="">
+                    </div>
+                    <h2 class="icon-text">{{ contest.language }}</h2>
+                    <p>{{ contest.description|slice:"100"|safe }}</p>
+                    <span><b>{{ contest.date }}</b> | {{ contest.time }} </span>
+                    <br>
+                    <div class="type-actions">
+                        <a href="{% url 'main:contest_detail' contest.slug %}" class="btn">
+                            Yozilish
+                        </a>
+                    </div>
+                </div>                
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <section id='about-hackathons'>
+        <div class="container">
+            <div class="about-hackathons">
+                <div class="about-image">
+                    <img src="/static/src/banner.png" alt="">
+                </div>
+                <div class="about-text">
+                    <h2>RoboHack o'zi nima ?</h2>
+                    <br>
+                    <p> Robocode IT Academy , Andijon Yoshlar Texnoparki hamda Innovatsiyalar vazirligi hamda Xalq ta'limi vazirligi tomonidan Andijonda dasturlash va dizaynerlik , aniq fanlar o'zlashtirishi va boshqa sohalarda iqtidorli yoshlarni saralab
+                        olish uchun o'tkaziladgan tadbirlar , musobaqalar uchun ro'yhatdan o'tish va ular haqida ma'lumotlarni olish uchun tizim. </p>
+                    <br>
+                    <h3>Qanday foydasi bor ?</h3>
+                    <br>
+                    <ul class="why">
+                        <li class="why-icon"><i class="fas fa-brain"></i> Aqlni charxlovchi topshiriqlar</li>
+                        <li class="why-icon"> <i class="fas fa-tasks"></i>Algoritmingiz kuchayadi</li>
+                        <li class="why-icon"> <i class="fas fa-smile"></i>Yuqori tashkiliy atmosfera</li>
+                        <li class="why-icon"> <i class="fas fa-child"></i>Bilimlarni tekshirib olish imkoniyati</li>
+                        <li class="why-icon"> <i class="fas fa-arrow-up"></i>Shaxsiy rivojlanishingiz uchun imkoniyat</li>
+                        <li class="why-icon"> <i class="fas fa-sign-in"></i>Masofadan turib ro'yhatdan o'tish</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- OUR PARTNERS Area  -->
+    <section id="partners">
+        <div class="container">
+            <center>
+                <div class="area-title">
+                    Bizning hamkorlarimiz
+                </div>
+                <br>
+                <br>
+            </center>
+            <div class="our-partners">
+                <div class="partners">
+                    <div class="partner">
+                        <img src="/static/src/robocode.png" alt="">
+                    </div>
+                    <div class="partner">
+                        <img src="/static/src/texnopar.png" alt="">
+                    </div>
+                    <div class="partner">
+                        <img src="/static/src/inno.png" alt="">
+                    </div>
+                    <div class="partner">
+                        <img src="/static/src/xal.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Events types -->
+    <section id="events">
+        <div class="container">
+            <center>
+                <div class="area-title">
+                    Tadbirlar
+                </div>
+                <br>
+                <br>
+            </center>
+            <!-- Hackathons -->
+            <div class="types-area">
+                {% for event in events %}
+                <div class="type">
+                    <div class="icon">
+                        <img src="{{ event.card_image.url }}" width="100" alt="">
+                    </div>
+                    <h2 class="icon-text">{{ event.title }}</h2>
+                    <p>{{ event.description|slice:"150"|safe }}</p>
+                    <span><b>{{ event.date }}</b> | {{ event.time }} </span>
+                    <br>
+                    <div class="type-actions">
+                        <a href="{% url 'main:event_detail' event.slug %}" class="btn">
+                            Yozilish
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <section id="gallery">
+        <div class="contaier">
+            <br>
+            <center>
+                <h2>{{ history.title }}</h2>
+                <p class="blur-text ">{{ history.short_description }}</p>
+            </center>
+            <br><br>
+            <div class="gallery">
+                <!-- Slider main container -->
+                <div class="splide">
+                    <div class="splide__track">
+                        <ul class="splide__list">
+                            {% for img in history.images.all %}
+                            <li class="splide__slide">
+                                <div class="slide">
+                                    <img src="{{ img.img.url }}" onclick="window.open(this.src)">
+                                </div>
+                            </li>
+                            {% endfor %}
+                            <!-- <li class="splide__slide">
+                                <div class="slide">
+                                    <img src="/static/src/slide2.png" onclick="window.open(this.src)">
+                                </div>
+                            </li>
+                            <li class="splide__slide">
+                                <div class="slide">
+                                    <img src="/static/src/slide3.png" onclick="window.open(this.src)">
+                                </div>
+                            </li>
+                            <li class="splide__slide">
+                                <div class="slide">
+                                    <img src="/static/src/slide1.png" onclick="window.open(this.src)">
+                                </div>
+                            </li>
+                            <li class="splide__slide">
+                                <div class="slide">
+                                    <img src="/static/src/slide2.png" onclick="window.open(this.src)">
+                                </div>
+                            </li>
+                            <li class="splide__slide">
+                                <div class="slide">
+                                    <img src="/static/src/slide3.png" onclick="window.open(this.src)">
+                                </div>
+                            </li>
+                            <li class="splide__slide">
+                                <div class="slide">
+                                    <img src="/static/src/slide1.png" onclick="window.open(this.src)">
+                                </div>
+                            </li>
+                            <li class="splide__slide">
+                                <div class="slide">
+                                    <img src="/static/src/slide2.png" onclick="window.open(this.src)">
+                                </div>
+                            </li>
+                            <li class="splide__slide">
+                                <div class="slide">
+                                    <img src="/static/src/slide3.png" onclick="window.open(this.src)">
+                                </div>
+                            </li> -->
+                        </ul>
+                    </div>
+                    <div class="splide__progress">
+                        <div class="splide__progress__bar">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="contact">
+        <div class="container " style="display:flex;justify-content:center; ">
+            <div class="contact-area ">
+                <center>
+                    <h2>Savollaringizni bizga yozib yuboring</h2>
+                    <p class="blur-text ">Siz ko'rsatgan raqam bo'yicha biz savollaringizga javob berishga harakat qilamiz.</p>
+                </center>
+                <div class="contact-form">
+                
+                    <p>
+                        <input type="text" class="form" placeholder="Ism" id="id_name">
+                    </p>
+                    <p>
+                        <input type="tel" name="telphone" placeholder="88 888 8888" pattern="[0-9]{2}-[0-9]{3}-[0-9]{4}" maxlength="12" class="form" required id="id_phone">
+                    </p>
+                    <p>
+                        <textarea cols="22" rows="4" placeholder="Xabar matni" id="id_message"></textarea>
+                    </p>
+                    <p>
+                        <button class="btn" onclick="ContactForm()">
+                            Yuborish
+                        </button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="footer ">
+        <footer class="container ">
+            <div class="footer-content ">
+                <div class="content ">
+                    <div class="block brand ">
+                        <a href="# " class="logo ">
+                            RoboHack
+                        </a>
+                        <br>
+                        <small> Robocode IT Academy tomonidan 2022-yil yo'lga qo'yilgan.</small>
+                        <br>
+                        <p class="blur-text ">
+                            Barcha taklif va savollaringizni bizga yozib yuborishingiz mumkin.
+                        </p>
+                    </div>
+                    <div class="block contacts ">
+                        <h3>Bog'lanish</h3>
+                        <ul class="why ">
+                            <li class="why-icon ">
+                                <a href="# " class="blur-text "><i class="fas fa-phone "></i> +998931234567</a>
+                            </li>
+                            <li class="why-icon ">
+                                <a href="# " class="blur-text "><i class="fas fa-map-marker-alt "></i> Andijon sh. Uzbekistan</a>
+                            </li>
+                            <li class="why-icon ">
+                                <a href="# " class="blur-text "><i class="fas fa-envelope "></i> support@hackathon.uz</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="block more ">
+                        <h3>Qo'shimcha</h3>
+                        <ul class="why ">
+                            <li class="why-icon ">
+                                <a href="#about-hackathons" class="blur-text "><i class="fas fa-info "></i> Biz haqimizda</a>
+                            </li>
+                            <li class="why-icon ">
+                                <a href="#contact" class="blur-text "><i class="fas fa-phone "></i> Aloqa</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="block pages ">
+                        <h3>Bo'limlar</h3>
+                        <ul class="why ">
+                            <li class="why-icon ">
+                                <a href="#chellanges" class="blur-text ">Musobaqalar</a>
+                            </li>
+                            <li class="why-icon">
+                                <a href="#events" class="blur-text ">Tadbirlar</a>
+                            </li>
+                            <li class="why-icon ">
+                                <a href="#contact" class="blur-text ">Bog'lanish</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </section>
+
+    <section id="success" class="info-modal">
+        <h1>Muvaffaqiyatli yuborildi !</h1>
+        <h3>Tez Orada Aloqaga Chiqamiz !</h3>
+        <div class="close-info-modal">
+            <i class="fas fa-times" onclick="this.parentElement.parentElement.classList.remove('info-modal-active')"></i>
+        </div>
+    </section>
+
+    <section id="error" class="info-modal">
+        <h1>Biror Narsa Notogri Ketdi</h1>
+        <h3>Iltimos Togri Formatda Yozing</h3>
+        <div class="close-info-modal">
+            <i class="fas fa-times" onclick="this.parentElement.parentElement.classList.remove('info-modal-active')"></i>
+        </div>
+    </section>
+
+    <script src="/static/js/splide.min.js"></script>
+    <script src="/static/js/slider.js "></script>
+    <script src="/static/js/forms.js "></script>
+    <script src="/static/js/main.js "></script>
+</body>
+
+</html>
