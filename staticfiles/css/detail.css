@@ -1,0 +1,184 @@
+.who-for {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+}
+
+.for {
+    background: rgba(44, 53, 61, 0.2);
+    backdrop-filter: blur(50px);
+    padding: 20px;
+    border-radius: 15px;
+    max-width: 392px;
+    width: 100%;
+    margin: 10px 25px;
+    transition: all 0.3s;
+}
+
+.for:hover {
+    transform: translateY(-20px);
+}
+
+.for .icon img {
+    width: 40%;
+}
+
+.events {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.event {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content h1 {
+    font-size: 2.5em;
+}
+
+
+/* https://getcssscan.com/css-box-shadow-examples */
+
+.about-event {
+    display: flex;
+    /* flex-direction: row;
+    justify-content: center; */
+    background: rgba(44, 53, 61, 0.2);
+    backdrop-filter: blur(50px);
+    /* Note: backdrop-filter has minimal browser support */
+    border-radius: 25px;
+    padding: 50px;
+}
+
+.about-event .content-image {
+    float: right;
+    width: 100%;
+}
+
+.timeline {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-radius: 25px;
+    padding: 50px;
+}
+
+.timeline .times {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.time {
+    margin: 40px;
+}
+
+.time span {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.time .fa-clock {
+    color: #FF6E30;
+}
+
+.times .column {
+    width: 2px;
+    height: 300px;
+    border-radius: 1px;
+    background-color: aliceblue;
+}
+
+.modal {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: -100px;
+    left: -1500px;
+    margin: 10px auto;
+    opacity: 0;
+    transition: all 0.5s;
+}
+
+.modal-content {
+    background-color: rgba(16, 19, 20, 0.822);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 400px;
+    padding: 20px 90px 20px 60px;
+}
+
+.pl-3 {
+    padding-left: 50px;
+}
+
+.active-modal {
+    position: absolute;
+    width: 100%;
+    top: 100px;
+    left: auto;
+    margin: auto;
+    z-index: 999;
+    opacity: 1;
+}
+
+.banner-img {
+    width: 100%;
+    max-width: 100%;
+    max-height: 40%;
+    /* min-height: 30%; */
+    /* max-height: 40%; */
+    /* margin-bottom: 30px; */
+    object-fit: cover;
+    margin-bottom: 30px;
+    /* object-position: bottom; */
+}
+
+/* @media (max-width: 685px) {
+    .banner-img {
+        width: 400px;
+        height: 400px;
+        min-height: 50%;
+    }
+} */
+
+/* .mobile-top {
+    margin-top: 50px;
+} */
+
+.mb {
+    margin-bottom: 20px;
+}
+
+/* @media (max-width: 708px) {
+    .mobile-top {
+        margin-top: 90px;
+    }
+}
+
+@media (max-width: 658px) {
+    .mobile-top {
+        margin-top: 135px;
+    }
+}
+
+@media (max-width: 482px) {
+    .mobile-top {
+        margin-top: 205px;
+    }
+}
+
+@media (max-width: 366px) {
+    .mobile-top {
+        margin-top: 295px;
+    }
+} */
